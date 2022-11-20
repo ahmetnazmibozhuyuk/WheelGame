@@ -16,7 +16,7 @@ namespace Wheel.Control
         }
 
         private AngleLimit[] _angleLimits;
-        private readonly int _segmentCount = 7;
+        private readonly int _segmentCount = 8;
         private readonly float _startAngle = 0;
 
         private void Start()
@@ -44,7 +44,9 @@ namespace Wheel.Control
             {
                 if (_finalScore >= _angleLimits[i].minimumAngle && _finalScore <= _angleLimits[i].maximumAngle)
                 {
+                    Debug.Log("winner: " + i);
                     return i;
+                    
                 }
             }
             return 0;

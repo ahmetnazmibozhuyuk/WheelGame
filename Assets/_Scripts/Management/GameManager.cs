@@ -11,9 +11,9 @@ namespace Wheel.Managers
         [SerializeField] private GameObject wheelObject;
         private WheelHandler _wheelControl;
         public int RewardCount { get { return rewards.Length; } }
-
         [SerializeField] private RewardAttributes[] rewards = new RewardAttributes[7];
-
+        [SerializeField] private Sprite[] wheelSprite;
+        [SerializeField] private Sprite[] pinSprite;
         #endregion
 
         private UIManager _uiManager;
@@ -24,10 +24,25 @@ namespace Wheel.Managers
             _uiManager = GetComponent<UIManager>();
             _wheelControl = wheelObject.GetComponent<WheelHandler>();
         }
+        private void OnEnable()
+        {
+            GameStateHandler.OnGameAwaitingStartState += InitializeWheel;
+        }
+        private void OnDisable()
+        {
+            GameStateHandler.OnGameAwaitingStartState -= InitializeWheel;
+        }
+        private void InitializeWheel()
+        {
+
+        }
+
+
+
+        #region Wheel Control Methods
         public void SpinWheel()
         {
             _wheelControl.StartSpinning();
-
         }
         public void RestartWheel()
         {
@@ -37,5 +52,6 @@ namespace Wheel.Managers
         {
 
         }
+        #endregion
     }
 }
