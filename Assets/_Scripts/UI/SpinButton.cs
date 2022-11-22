@@ -8,8 +8,6 @@ namespace Wheel.UI
     {
         private Button _button;
 
-        [SerializeField] private int a;
-
         private void OnValidate()
         {
             AssignButtonFunctionality();
@@ -21,12 +19,10 @@ namespace Wheel.UI
             _button = GetComponent<Button>();
             _button.onClick.RemoveAllListeners();
             _button.onClick.AddListener(SpinWheel);
-            Debug.Log("button functionality assigned");
 
         }
         private void SpinWheel()
         {
-            Debug.Log("deneme");
             GameManager.Instance.SpinWheel();
         }
     }

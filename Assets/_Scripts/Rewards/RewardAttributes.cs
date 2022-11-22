@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Wheel.Reward
 {
@@ -7,6 +7,7 @@ namespace Wheel.Reward
     {
         public string RewardName;
         public string RewardDescription;
+        public int RewardAmount; // bu bi multiplier'a bağlı olacak giderek artacak
         public RewardRarity Rarity;
         [Range(0,20)]public float DropRate;
     }

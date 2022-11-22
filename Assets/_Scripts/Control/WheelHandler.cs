@@ -1,9 +1,15 @@
-using UnityEngine;
+﻿using UnityEngine;
 using DG.Tweening;
 using Wheel.Managers;
 
 namespace Wheel.Control
 {
+
+    //spin bittiğinde bir kez daha çalışıp hangi kısım kazandıysa onun ortasına dönecek
+    //spin olurken her segmenti geçtiğinde ses çıkacak
+
+
+
     public class WheelHandler : MonoBehaviour
     {
         private float _currentTurnAngle;

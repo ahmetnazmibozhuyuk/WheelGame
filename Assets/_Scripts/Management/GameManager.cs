@@ -7,6 +7,13 @@ namespace Wheel.Managers
     [RequireComponent(typeof(UIManager))]
     public class GameManager : Singleton<GameManager>
     {
+        #region Round Info
+        public int SafeRoundIndex { get { return safeRoundIndex; } }
+        [SerializeField] private int safeRoundIndex = 5;
+        public int SuperRoundIndex { get { return superRoundIndex; } }
+        [SerializeField] private int superRoundIndex = 30;
+        #endregion
+
         #region Wheel Related
         [SerializeField] private GameObject wheelObject;
         private WheelHandler _wheelControl;
