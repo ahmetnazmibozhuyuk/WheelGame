@@ -7,6 +7,7 @@ namespace Wheel.Managers
 
         public static event Action OnGameAwaitingStartState;
         public static event Action OnSpinningState;
+        public static event Action OnSpinningFinishedState;
         public static event Action OnGameLostState;
         public static event Action OnGameWonState;
 
@@ -22,6 +23,9 @@ namespace Wheel.Managers
                     break;
                 case GameState.Spinning:
                     OnSpinningState?.Invoke();
+                    break;
+                case GameState.SpinningFinished:
+                    OnSpinningFinishedState?.Invoke();
                     break;
                 case GameState.GameLost:
                     OnGameLostState?.Invoke();
@@ -39,8 +43,9 @@ namespace Wheel.Managers
         GamePreStart = 0,
         GameAwaitingStart = 1,
         Spinning = 2,
-        GameLost = 3,
-        GameWon = 4,
+        SpinningFinished = 3,
+        GameLost = 4,
+        GameWon = 5,
     }
 }
 namespace Wheel.Managers

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +8,7 @@ namespace Wheel.Control
 {
     public class RewardHandler : MonoBehaviour
     {
+        [SerializeField] private CardHandler rewardCard;
         [SerializeField] private Image[] rewardImages;
 
         [SerializeField] private RewardAttributes[] rewards;
@@ -16,8 +16,11 @@ namespace Wheel.Control
         [SerializeField] private Sprite commonBGSprite;
         [SerializeField] private Sprite uncommonBGSprite;
         [SerializeField] private Sprite rareBGSprite;
-        private Sprite _currentSprite;
 
+
+
+        private Sprite _acquiredBGSprite;
+        private Sprite _acquiredRewardSprite;
 
         private List<RewardAttributes> _commonRewardList = new List<RewardAttributes>();
         private List<RewardAttributes> _uncommonRewardList = new List<RewardAttributes>();
@@ -26,10 +29,15 @@ namespace Wheel.Control
         private void OnEnable()
         {
             GameStateHandler.OnGameAwaitingStartState += InitializeRewardLists;
+            GameStateHandler.OnGameAwaitingStartState += AssignRewards;
+            //GameStateHandler.OnSpinningFinishedState += ActivateCard;
+
         }
         private void OnDisable()
         {
             GameStateHandler.OnGameAwaitingStartState -= InitializeRewardLists;
+            GameStateHandler.OnGameAwaitingStartState -= AssignRewards;
+            //GameStateHandler.OnSpinningFinishedState -= ActivateCard;
         }
         private void InitializeRewardLists()
         {
@@ -62,6 +70,25 @@ namespace Wheel.Control
                 rewardImages[i].sprite = rewards[i].RewardSprite;
             }
         }
+        public void ActivateCard(int rewardIndex)
+        {
+            rewardCard.DisplayCard(SelectedBGSprite(rewards[rewardIndex].Rarity), rewards[rewardIndex].RewardSprite, 
+                rewards[rewardIndex].RewardName, rewards[rewardIndex].RewardAmount.ToString());
+        }
 
+        private Sprite SelectedBGSprite(RewardRarity rarity)
+        {
+            switch (rarity)
+            {
+                case RewardRarity.Common:
+                    return commonBGSprite;
+                case RewardRarity.Uncommon:
+                    return uncommonBGSprite;
+                case RewardRarity.Rare:
+                    return rareBGSprite;
+                default:
+                    return commonBGSprite;
+            }
+        }
     }
 }

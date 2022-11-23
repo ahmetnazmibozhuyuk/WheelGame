@@ -1215,8 +1215,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60f6a6d989fee5146983a5640ad91ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewardImages: []
-  rewards: []
+  rewardCard: {fileID: 0}
+  rewardImages:
+  - {fileID: 42156990}
+  - {fileID: 550162445}
+  - {fileID: 1406610494}
+  - {fileID: 492616288}
+  - {fileID: 1837759556}
+  - {fileID: 376221783}
+  - {fileID: 1644529675}
+  - {fileID: 900866949}
+  rewards:
+  - {fileID: 11400000, guid: e4c95f6a774e51049aac6afe8f7479c0, type: 2}
+  - {fileID: 11400000, guid: dcb6224b90f5b8a49a922f2f35eca46d, type: 2}
+  - {fileID: 11400000, guid: f6113664411a4ee45becb9dd04008ad2, type: 2}
+  - {fileID: 11400000, guid: 5c94238db0b7f6a46bf7394af90b7f67, type: 2}
+  - {fileID: 11400000, guid: e4e542ffdcd3b654791c2a093388ca2b, type: 2}
+  - {fileID: 11400000, guid: 821b725967c071043b32b56544398ba9, type: 2}
+  - {fileID: 11400000, guid: c42fe93189bb16a49b6f402d2a6ff6cc, type: 2}
+  - {fileID: 11400000, guid: e4e530d499f78f04aa48b7378a3b4e2b, type: 2}
+  - {fileID: 11400000, guid: b7f0a58811cf2334f89154e8589b5326, type: 2}
+  - {fileID: 11400000, guid: e7dc8ae26e104f445afd1f0f201d3ca9, type: 2}
+  - {fileID: 11400000, guid: e5517bd5297f2b64cbbd6b5f2082e73f, type: 2}
+  - {fileID: 11400000, guid: 9220892101f65254ead09e5547246ee3, type: 2}
+  - {fileID: 11400000, guid: 44b2bdae5b2ac434ba760e92b0d230ab, type: 2}
+  - {fileID: 11400000, guid: 2de25528e7669a74aae5b326ea00ef7b, type: 2}
+  - {fileID: 11400000, guid: 1235b261d55749749a0899cce68e5708, type: 2}
+  - {fileID: 11400000, guid: 58fb87b0a0cce774d99ea854786898e5, type: 2}
+  - {fileID: 11400000, guid: 86f7bece687dc1348b43fb16bde1925d, type: 2}
+  - {fileID: 11400000, guid: b927a3cbf760559489dd57f888a6a591, type: 2}
+  - {fileID: 11400000, guid: d22333b0794ea97448a7e515b695244c, type: 2}
+  - {fileID: 11400000, guid: 80b57dca86296c943aada0ff6a9fc5d9, type: 2}
+  - {fileID: 11400000, guid: b84818cd16e3c71428cbf1f55aa9f522, type: 2}
+  commonBGSprite: {fileID: 21300000, guid: 7e8dad83672126446b9280d7ec78df2b, type: 3}
+  uncommonBGSprite: {fileID: 21300000, guid: 40779742a318aa64abf140ea14ab8682, type: 3}
+  rareBGSprite: {fileID: 21300000, guid: 6ffe0322edf204645a39037f286f7273, type: 3}
 --- !u!224 &1206733651 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8071337857853761974, guid: cb8a12c0fc03f844a9361635438a8db9, type: 3}
@@ -2041,7 +2074,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2649303421771439124, guid: 4ec6f9f89231d1f479cf92266f6a88bb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ec6f9f89231d1f479cf92266f6a88bb, type: 3}

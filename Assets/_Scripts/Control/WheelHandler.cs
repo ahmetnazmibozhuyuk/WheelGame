@@ -8,9 +8,11 @@ namespace Wheel.Control
     //spin bittiğinde bir kez daha çalışıp hangi kısım kazandıysa onun ortasına dönecek
     //spin olurken her segmenti geçtiğinde ses çıkacak
 
-
+    [RequireComponent(typeof(RewardHandler))]
     public class WheelHandler : MonoBehaviour
     {
+        private RewardHandler _rewardHandler;
+
         [SerializeField] private Sprite[] wheelSprite;
         [SerializeField] private Sprite[] pinSprite;
 
@@ -27,6 +29,10 @@ namespace Wheel.Control
         private readonly int _segmentCount = 8;
         private readonly float _startAngle = 0;
 
+        private void Awake()
+        {
+            _rewardHandler = GetComponent<RewardHandler>();
+        }
         private void Start()
         {
             InitializeAngles();
@@ -48,6 +54,7 @@ namespace Wheel.Control
         }
         private int ResultIndex()
         {
+            GameStateHandler.ChangeState(GameState.SpinningFinished);
             for (int i = 0; i < _angleLimits.Length; i++)
             {
                 if (_finalScore >= _angleLimits[i].minimumAngle && _finalScore <= _angleLimits[i].maximumAngle)
