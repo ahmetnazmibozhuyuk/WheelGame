@@ -8,6 +8,9 @@ namespace Wheel.Managers
     public class GameManager : Singleton<GameManager>
     {
         #region Round Info
+
+        public int CurrentRound { get; private set; }
+
         public int SafeRoundIndex { get { return safeRoundIndex; } }
         [SerializeField] private int safeRoundIndex = 5;
         public int SuperRoundIndex { get { return superRoundIndex; } }
@@ -33,15 +36,15 @@ namespace Wheel.Managers
         }
         private void OnEnable()
         {
-            GameStateHandler.OnGameAwaitingStartState += InitializeWheel;
+            GameStateHandler.OnGameAwaitingStartState += NewRound;
         }
         private void OnDisable()
         {
-            GameStateHandler.OnGameAwaitingStartState -= InitializeWheel;
+            GameStateHandler.OnGameAwaitingStartState -= NewRound;
         }
-        private void InitializeWheel()
+        private void NewRound()
         {
-
+            CurrentRound++;
         }
 
 

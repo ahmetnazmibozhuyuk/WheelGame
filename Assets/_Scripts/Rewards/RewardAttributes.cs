@@ -8,8 +8,11 @@ namespace Wheel.Reward
         public string RewardName;
         public string RewardDescription;
         public int RewardAmount; // bu bi multiplier'a bağlı olacak giderek artacak
+
+        public Sprite RewardSprite;
+
         public RewardRarity Rarity;
         [Range(0,20)]public float DropRate;
     }
-    public enum RewardRarity { Common = 0, Uncommon = 1, Rare = 2, Legendary = 3 }
+    public enum RewardRarity { Common = 0, Uncommon = 1, Rare = 2 }
 }

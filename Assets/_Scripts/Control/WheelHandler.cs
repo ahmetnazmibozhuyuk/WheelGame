@@ -9,9 +9,11 @@ namespace Wheel.Control
     //spin olurken her segmenti geçtiğinde ses çıkacak
 
 
-
     public class WheelHandler : MonoBehaviour
     {
+        [SerializeField] private Sprite[] wheelSprite;
+        [SerializeField] private Sprite[] pinSprite;
+
         private float _currentTurnAngle;
         private float _finalScore
         {
