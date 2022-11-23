@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Wheel.Reward;
@@ -65,8 +65,16 @@ namespace Wheel.Control
         }
         private void AssignRewards()
         {
-            for (int i = 0; i < rewards.Length; i++)
+            for (int i = 0; i < rewardImages.Length; i++)
             {
+
+
+                //random seçilecek, seçilen listeden dusecek
+                //rarity ve verilen sayi seviye arttikca ve ozel bolumlerde artacak
+                //biri garanti death olacak - özel bölüm değilse
+
+
+
                 rewardImages[i].sprite = rewards[i].RewardSprite;
             }
         }

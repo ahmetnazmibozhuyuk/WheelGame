@@ -34,6 +34,10 @@ namespace Wheel.Managers
             _uiManager = GetComponent<UIManager>();
             _wheelControl = wheelObject.GetComponent<WheelHandler>();
         }
+        private void Start()
+        {
+            GameStateHandler.ChangeState(GameState.GameAwaitingStart);
+        }
         private void OnEnable()
         {
             GameStateHandler.OnGameAwaitingStartState += NewRound;

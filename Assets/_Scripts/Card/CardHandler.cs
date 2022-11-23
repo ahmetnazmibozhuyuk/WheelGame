@@ -31,7 +31,7 @@ namespace Wheel.Reward
             bgImage.sprite = bgSprite;
             rewardImage.sprite = rewardSprite;
             nameText.SetText(nameString);
-            amountText.SetText(amountString);
+            amountText.SetText("x"+amountString);
             transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBounce);
 
         }

@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 203248635}
   - component: {fileID: 203248634}
   - component: {fileID: 203248633}
+  - component: {fileID: 203248636}
   m_Layer: 5
   m_Name: ui_pin
   m_TagString: Untagged
@@ -369,6 +370,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wheelSprite: []
   pinSprite: []
+--- !u!114 &203248636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203248631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60f6a6d989fee5146983a5640ad91ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewardCard: {fileID: 0}
+  rewardImages: []
+  rewards: []
+  commonBGSprite: {fileID: 0}
+  uncommonBGSprite: {fileID: 0}
+  rareBGSprite: {fileID: 0}
 --- !u!1 &210687699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,7 +1234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60f6a6d989fee5146983a5640ad91ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewardCard: {fileID: 0}
+  rewardCard: {fileID: 1872547263}
   rewardImages:
   - {fileID: 42156990}
   - {fileID: 550162445}
@@ -1977,6 +1996,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2649303421771439123, guid: 4ec6f9f89231d1f479cf92266f6a88bb, type: 3}
   m_PrefabInstance: {fileID: 2649303420002177455}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1872547263 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1081008147504805991, guid: 4ec6f9f89231d1f479cf92266f6a88bb, type: 3}
+  m_PrefabInstance: {fileID: 2649303420002177455}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a84ad7edbfcb5a34bb4f44f1b144bc97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2649303420002177455
 PrefabInstance:
   m_ObjectHideFlags: 0

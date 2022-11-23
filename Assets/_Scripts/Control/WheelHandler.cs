@@ -55,11 +55,21 @@ namespace Wheel.Control
         private int ResultIndex()
         {
             GameStateHandler.ChangeState(GameState.SpinningFinished);
+
             for (int i = 0; i < _angleLimits.Length; i++)
             {
                 if (_finalScore >= _angleLimits[i].minimumAngle && _finalScore <= _angleLimits[i].maximumAngle)
                 {
                     Debug.Log("winner: " + i);
+
+
+
+                    //kart ciktiginda da efektler vs cikacak
+
+                    //once geri donup duzgun pozisyon alacak (bulunan reward segmentini ortasina donecek)
+
+
+                    _rewardHandler.ActivateCard(i);
                     return i;
                     
                 }
