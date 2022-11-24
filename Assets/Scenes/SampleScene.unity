@@ -287,10 +287,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 203248632}
-  - component: {fileID: 203248635}
   - component: {fileID: 203248634}
   - component: {fileID: 203248633}
-  - component: {fileID: 203248636}
   m_Layer: 5
   m_Name: ui_pin
   m_TagString: Untagged
@@ -356,38 +354,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 203248631}
   m_CullTransparentMesh: 1
---- !u!114 &203248635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203248631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4cc05eaa3c8e074c9e1ef21b44d8b6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wheelSprite: []
-  pinSprite: []
---- !u!114 &203248636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 203248631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60f6a6d989fee5146983a5640ad91ab7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rewardCard: {fileID: 0}
-  rewardImages: []
-  rewards: []
-  commonBGSprite: {fileID: 0}
-  uncommonBGSprite: {fileID: 0}
-  rareBGSprite: {fileID: 0}
 --- !u!1 &210687699
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,16 +859,6 @@ MonoBehaviour:
   safeRoundIndex: 5
   superRoundIndex: 30
   wheelObject: {fileID: 1144770395}
-  rewards:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  wheelSprite: []
-  pinSprite: []
 --- !u!114 &709992841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1269,6 +1225,12 @@ MonoBehaviour:
   commonBGSprite: {fileID: 21300000, guid: 7e8dad83672126446b9280d7ec78df2b, type: 3}
   uncommonBGSprite: {fileID: 21300000, guid: 40779742a318aa64abf140ea14ab8682, type: 3}
   rareBGSprite: {fileID: 21300000, guid: 6ffe0322edf204645a39037f286f7273, type: 3}
+  minimumCommonItemRound: 0
+  maximumCommonItemRound: 12
+  minimumUncommonItemRound: 3
+  maximumUncommonItemRound: 50
+  minimumRareItemRound: 15
+  maximumRareItemRound: 150
 --- !u!224 &1206733651 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8071337857853761974, guid: cb8a12c0fc03f844a9361635438a8db9, type: 3}

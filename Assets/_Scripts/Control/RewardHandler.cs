@@ -19,6 +19,17 @@ namespace Wheel.Control
 
 
 
+        [SerializeField]private int minimumCommonItemRound = 0;
+        [SerializeField] private int maximumCommonItemRound = 15;
+
+        [SerializeField] private int minimumUncommonItemRound = 3;
+        [SerializeField] private int maximumUncommonItemRound = 50;
+
+        [SerializeField] private int minimumRareItemRound = 12;
+        [SerializeField] private int maximumRareItemRound = 150;
+
+
+
         private Sprite _acquiredBGSprite;
         private Sprite _acquiredRewardSprite;
 
@@ -26,24 +37,29 @@ namespace Wheel.Control
         private List<RewardAttributes> _uncommonRewardList = new List<RewardAttributes>();
         private List<RewardAttributes> _rareRewardList = new List<RewardAttributes>();
 
+        private List<List<RewardAttributes>> _rewardLists = new List<List<RewardAttributes>>();
+
+        private List<RewardAttributes> _selectedRewardsList = new List<RewardAttributes>();
+
         private void OnEnable()
         {
-            GameStateHandler.OnGameAwaitingStartState += InitializeRewardLists;
-            GameStateHandler.OnGameAwaitingStartState += AssignRewards;
+            GameStateHandler.OnGameAwaitingStartState += InitializeRewards;
+            //GameStateHandler.OnGameAwaitingStartState += AssignRewards;
             //GameStateHandler.OnSpinningFinishedState += ActivateCard;
 
         }
         private void OnDisable()
         {
-            GameStateHandler.OnGameAwaitingStartState -= InitializeRewardLists;
-            GameStateHandler.OnGameAwaitingStartState -= AssignRewards;
+            GameStateHandler.OnGameAwaitingStartState -= InitializeRewards;
+            //GameStateHandler.OnGameAwaitingStartState -= AssignRewards;
             //GameStateHandler.OnSpinningFinishedState -= ActivateCard;
         }
-        private void InitializeRewardLists()
+        private void InitializeRewards()
         {
             _commonRewardList.Clear();
             _uncommonRewardList.Clear();
             _rareRewardList.Clear();
+            _rewardLists.Clear();
             for (int i = 0; i < rewards.Length; i++)
             {
                 if (rewards[i].Rarity == RewardRarity.Common)
@@ -62,21 +78,49 @@ namespace Wheel.Control
                     continue;
                 }
             }
+            if (GameManager.Instance.CurrentRound >= minimumCommonItemRound && GameManager.Instance.CurrentRound < maximumCommonItemRound)
+            {
+                _rewardLists.Add(_commonRewardList);
+            }
+            if (GameManager.Instance.CurrentRound >= minimumUncommonItemRound && GameManager.Instance.CurrentRound < maximumUncommonItemRound)
+            {
+                _rewardLists.Add(_uncommonRewardList);
+            }
+            if (GameManager.Instance.CurrentRound >= minimumRareItemRound && GameManager.Instance.CurrentRound < maximumRareItemRound)
+            {
+                _rewardLists.Add(_rareRewardList);
+            }
+            AssignRewards();
+
         }
         private void AssignRewards()
         {
-            for (int i = 0; i < rewardImages.Length; i++)
+            for(int k = 0; k < rewardImages.Length; k++)
             {
+                RewardAttributes chosenReward = null;
 
 
-                //random seçilecek, seçilen listeden dusecek
-                //rarity ve verilen sayi seviye arttikca ve ozel bolumlerde artacak
-                //biri garanti death olacak - özel bölüm değilse
-
-
-
-                rewardImages[i].sprite = rewards[i].RewardSprite;
+                for (int i = 0; i < _rewardLists.Count; i++)
+                {
+                    for (int j = 0; j < _rewardLists[i].Count; j++)
+                    {
+                        float randomRoll = Random.Range(0f, 100f);
+                        if (_rewardLists[i][j].DropRate > randomRoll)
+                        {
+                            chosenReward = _rewardLists[i][j];
+                            break;
+                        }
+                    }
+                    if (chosenReward != null) break;
+                }
+                if (chosenReward == null)
+                {
+                    chosenReward = _commonRewardList[Random.Range(0, _commonRewardList.Count)];
+                }
+                _selectedRewardsList.Add(chosenReward);
+                rewardImages[k].sprite = chosenReward.RewardSprite;
             }
+
         }
         public void ActivateCard(int rewardIndex)
         {

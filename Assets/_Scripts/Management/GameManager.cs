@@ -20,10 +20,9 @@ namespace Wheel.Managers
         #region Wheel Related
         [SerializeField] private GameObject wheelObject;
         private WheelHandler _wheelControl;
-        public int RewardCount { get { return rewards.Length; } }
-        [SerializeField] private RewardAttributes[] rewards = new RewardAttributes[7];
-        [SerializeField] private Sprite[] wheelSprite;
-        [SerializeField] private Sprite[] pinSprite;
+
+        //[SerializeField] private Sprite[] wheelSprite;
+        //[SerializeField] private Sprite[] pinSprite;
         #endregion
 
         private UIManager _uiManager;
