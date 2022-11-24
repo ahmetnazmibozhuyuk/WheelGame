@@ -5,7 +5,7 @@ using Wheel.Managers;
 namespace Wheel.Control
 {
 
-    //spin bittiğinde bir kez daha çalışıp hangi kısım kazandıysa onun ortasına dönecek
+
     //spin olurken her segmenti geçtiğinde ses çıkacak
 
     [RequireComponent(typeof(RewardHandler))]
@@ -51,9 +51,9 @@ namespace Wheel.Control
         {
             DOTween.To(() => _currentTurnAngle, x => _currentTurnAngle = x, 2000 + Random.Range(0f, 360f), 6 + Random.Range(0f, 5f)).
                 SetEase(Ease.InOutCubic).
-                OnUpdate(() => transform.rotation = Quaternion.Euler(0, 0, _currentTurnAngle)).OnComplete(() => GameManager.Instance.ResultPhase(ResultIndex()));
+                OnUpdate(() => transform.rotation = Quaternion.Euler(0, 0, _currentTurnAngle)).OnComplete(() => ResultIndex());
         }
-        private int ResultIndex()
+        private void ResultIndex()
         {
             GameStateHandler.ChangeState(GameState.SpinningFinished);
 
@@ -63,17 +63,32 @@ namespace Wheel.Control
             {
                 if (_finalScore >= _angleLimits[i].minimumAngle && _finalScore <= _angleLimits[i].maximumAngle)
                 {
-                    
-                    //mine yakınsa -45, maxa yakınsa +45 olacak
+                    if (_angleLimits[i].maximumAngle-_currentTurnAngle < _currentTurnAngle - _angleLimits[i].minimumAngle)
+                    {
+                        transform.DORotate(new Vector3(0, 0, (_angleLimits[i].minimumAngle)), 0.5f).OnComplete(() => _rewardHandler.ActivateCard(i+1));
+                        return;
+                    }
+                    else
+                    {
+                        transform.DORotate(new Vector3(0, 0, (_angleLimits[i].minimumAngle - _startAngle)), 0.5f).OnComplete(() => _rewardHandler.ActivateCard(i));
+                        return;
+                    }
 
 
-
-                    transform.DORotate(new Vector3(0,0,(_angleLimits[i].minimumAngle -_startAngle )), 0.5f).OnComplete(()=> _rewardHandler.ActivateCard(i));
-                    return i;
                 }
             }
-            transform.DORotate(new Vector3(0, 0, (_angleLimits[7].minimumAngle - _startAngle)), 0.5f).OnComplete(() => _rewardHandler.ActivateCard(7));
-            return 0;
+            if (_angleLimits[7].maximumAngle - _currentTurnAngle > _currentTurnAngle - _angleLimits[7].minimumAngle)
+            {
+                transform.DORotate(new Vector3(0, 0, (_angleLimits[7].minimumAngle)), 0.5f).OnComplete(() => _rewardHandler.ActivateCard(0));
+                return;
+            }
+            else
+            {
+                transform.DORotate(new Vector3(0, 0, (_angleLimits[7].minimumAngle - _startAngle)), 0.5f).OnComplete(() => _rewardHandler.ActivateCard(7));
+                return;
+            }
+
+
         }
         public void RestartWheel()
         {
