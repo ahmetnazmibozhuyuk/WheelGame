@@ -124,8 +124,8 @@ namespace Wheel.Control
         }
         public void ActivateCard(int rewardIndex)
         {
-            rewardCard.DisplayCard(SelectedBGSprite(rewards[rewardIndex].Rarity), rewards[rewardIndex].RewardSprite, 
-                rewards[rewardIndex].RewardName, rewards[rewardIndex].RewardAmount.ToString());
+            rewardCard.DisplayCard(SelectedBGSprite(_selectedRewardsList[rewardIndex].Rarity), _selectedRewardsList[rewardIndex].RewardSprite,
+                _selectedRewardsList[rewardIndex].RewardName, _selectedRewardsList[rewardIndex].RewardAmount.ToString());
         }
 
         private Sprite SelectedBGSprite(RewardRarity rarity)

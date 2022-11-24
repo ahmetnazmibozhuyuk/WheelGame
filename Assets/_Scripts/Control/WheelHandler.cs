@@ -21,13 +21,13 @@ namespace Wheel.Control
         {
             get
             {
-                return transform.rotation.eulerAngles.z % 360;
+                return transform.rotation.eulerAngles.z % 360+_startAngle;
             }
         }
 
         private AngleLimit[] _angleLimits;
         private readonly int _segmentCount = 8;
-        private readonly float _startAngle = 0;
+        private readonly float _startAngle = 45;
 
         private void Awake()
         {
@@ -61,15 +61,7 @@ namespace Wheel.Control
                 if (_finalScore >= _angleLimits[i].minimumAngle && _finalScore <= _angleLimits[i].maximumAngle)
                 {
                     Debug.Log("winner: " + i);
-
-
-
-                    //kart ciktiginda da efektler vs cikacak
-
-                    //once geri donup duzgun pozisyon alacak (bulunan reward segmentini ortasina donecek)
-
-
-                    _rewardHandler.ActivateCard(i);
+                    transform.DORotate(new Vector3(0,0,(_angleLimits[i].minimumAngle -_startAngle )), 0.5f).OnComplete(()=> _rewardHandler.ActivateCard(i));
                     return i;
                     
                 }
