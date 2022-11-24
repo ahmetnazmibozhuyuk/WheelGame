@@ -21,6 +21,7 @@ namespace Wheel.Control
         {
             get
             {
+
                 return transform.rotation.eulerAngles.z % 360+_startAngle;
             }
         }
@@ -56,16 +57,22 @@ namespace Wheel.Control
         {
             GameStateHandler.ChangeState(GameState.SpinningFinished);
 
+            Debug.Log(_finalScore);
+
             for (int i = 0; i < _angleLimits.Length; i++)
             {
                 if (_finalScore >= _angleLimits[i].minimumAngle && _finalScore <= _angleLimits[i].maximumAngle)
                 {
-                    Debug.Log("winner: " + i);
+                    
+                    //mine yakınsa -45, maxa yakınsa +45 olacak
+
+
+
                     transform.DORotate(new Vector3(0,0,(_angleLimits[i].minimumAngle -_startAngle )), 0.5f).OnComplete(()=> _rewardHandler.ActivateCard(i));
                     return i;
-                    
                 }
             }
+            transform.DORotate(new Vector3(0, 0, (_angleLimits[7].minimumAngle - _startAngle)), 0.5f).OnComplete(() => _rewardHandler.ActivateCard(7));
             return 0;
         }
         public void RestartWheel()

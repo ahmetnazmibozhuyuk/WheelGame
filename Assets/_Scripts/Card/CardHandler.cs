@@ -33,7 +33,7 @@ namespace Wheel.Reward
             nameText.SetText(nameString);
             amountText.SetText("x"+amountString);
             transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBounce);
-
+            rewardImage.SetNativeSize();
         }
 
     }

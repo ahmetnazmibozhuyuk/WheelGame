@@ -29,10 +29,6 @@ namespace Wheel.Control
         [SerializeField] private int maximumRareItemRound = 150;
 
 
-
-        private Sprite _acquiredBGSprite;
-        private Sprite _acquiredRewardSprite;
-
         private List<RewardAttributes> _commonRewardList = new List<RewardAttributes>();
         private List<RewardAttributes> _uncommonRewardList = new List<RewardAttributes>();
         private List<RewardAttributes> _rareRewardList = new List<RewardAttributes>();
@@ -44,15 +40,11 @@ namespace Wheel.Control
         private void OnEnable()
         {
             GameStateHandler.OnGameAwaitingStartState += InitializeRewards;
-            //GameStateHandler.OnGameAwaitingStartState += AssignRewards;
-            //GameStateHandler.OnSpinningFinishedState += ActivateCard;
 
         }
         private void OnDisable()
         {
             GameStateHandler.OnGameAwaitingStartState -= InitializeRewards;
-            //GameStateHandler.OnGameAwaitingStartState -= AssignRewards;
-            //GameStateHandler.OnSpinningFinishedState -= ActivateCard;
         }
         private void InitializeRewards()
         {
@@ -119,6 +111,7 @@ namespace Wheel.Control
                 }
                 _selectedRewardsList.Add(chosenReward);
                 rewardImages[k].sprite = chosenReward.RewardSprite;
+                rewardImages[k].SetNativeSize();
             }
 
         }
