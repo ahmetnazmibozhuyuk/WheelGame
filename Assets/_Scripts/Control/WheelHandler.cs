@@ -6,7 +6,7 @@ namespace Wheel.Control
 {
 
 
-    //spin olurken her segmenti geçtiğinde ses çıkacak
+    //dönerken her segmenti geçtiğinde ses çıkacak ve pin hareketi
 
     [RequireComponent(typeof(RewardHandler))]
     public class WheelHandler : MonoBehaviour
@@ -56,9 +56,6 @@ namespace Wheel.Control
         private void ResultIndex()
         {
             GameStateHandler.ChangeState(GameState.SpinningFinished);
-
-            Debug.Log(_finalScore);
-
             for (int i = 0; i < _angleLimits.Length; i++)
             {
                 if (_finalScore >= _angleLimits[i].minimumAngle && _finalScore <= _angleLimits[i].maximumAngle)
@@ -73,11 +70,9 @@ namespace Wheel.Control
                         transform.DORotate(new Vector3(0, 0, (_angleLimits[i].minimumAngle - _startAngle)), 0.5f).OnComplete(() => _rewardHandler.ActivateCard(i));
                         return;
                     }
-
-
                 }
             }
-            if (_angleLimits[7].maximumAngle - _currentTurnAngle > _currentTurnAngle - _angleLimits[7].minimumAngle)
+            if (_finalScore >= _angleLimits[7].minimumAngle && _finalScore <= _angleLimits[7].maximumAngle)
             {
                 transform.DORotate(new Vector3(0, 0, (_angleLimits[7].minimumAngle)), 0.5f).OnComplete(() => _rewardHandler.ActivateCard(0));
                 return;
@@ -87,15 +82,12 @@ namespace Wheel.Control
                 transform.DORotate(new Vector3(0, 0, (_angleLimits[7].minimumAngle - _startAngle)), 0.5f).OnComplete(() => _rewardHandler.ActivateCard(7));
                 return;
             }
-
-
         }
         public void RestartWheel()
         {
             transform.rotation = Quaternion.identity;
             _currentTurnAngle = 0;
         }
-
     }
     public struct AngleLimit
     {

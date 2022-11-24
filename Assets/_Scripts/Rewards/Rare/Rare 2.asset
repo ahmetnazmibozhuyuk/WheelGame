@@ -17,4 +17,5 @@ MonoBehaviour:
   RewardAmount: 3
   RewardSprite: {fileID: 21300000, guid: 4e210a0d37c81384abae59b50152b6c4, type: 3}
   Rarity: 2
+  Type: 7
   DropRate: 5

@@ -1,10 +1,10 @@
 using UnityEngine;
 using Wheel.Control;
 using Wheel.Reward;
+using Wheel.UI;
 
 namespace Wheel.Managers
 {
-    [RequireComponent(typeof(UIManager))]
     public class GameManager : Singleton<GameManager>
     {
         #region Round Info
@@ -25,12 +25,10 @@ namespace Wheel.Managers
         //[SerializeField] private Sprite[] pinSprite;
         #endregion
 
-        private UIManager _uiManager;
-
+        [SerializeField] private UpperStripeGenerator upperStripe;
         protected override void Awake()
         {
             base.Awake();
-            _uiManager = GetComponent<UIManager>();
             _wheelControl = wheelObject.GetComponent<WheelHandler>();
         }
         private void Start()
@@ -49,21 +47,25 @@ namespace Wheel.Managers
         {
             CurrentRound++;
         }
-
+        public void NextRound()
+        {
+            upperStripe.MoveStripe();
+            CurrentRound++;
+            GameStateHandler.ChangeState(GameState.GameAwaitingStart);
+            _wheelControl.RestartWheel();
+        }
 
 
         #region Wheel Control Methods
         public void SpinWheel()
         {
             _wheelControl.StartSpinning();
+            GameStateHandler.ChangeState(GameState.Spinning);
+            
         }
         public void RestartWheel()
         {
             _wheelControl.RestartWheel();
-        }
-        public void ResultPhase(int rewardIndex)
-        {
-
         }
         #endregion
     }

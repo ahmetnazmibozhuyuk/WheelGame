@@ -8,14 +8,13 @@ namespace Wheel.Control
 {
     public class RewardHandler : MonoBehaviour
     {
+
         [SerializeField] private CardHandler rewardCard;
         [SerializeField] private Image[] rewardImages;
 
         [SerializeField] private RewardAttributes[] rewards;
 
-        [SerializeField] private Sprite commonBGSprite;
-        [SerializeField] private Sprite uncommonBGSprite;
-        [SerializeField] private Sprite rareBGSprite;
+
 
 
 
@@ -37,6 +36,7 @@ namespace Wheel.Control
 
         private List<RewardAttributes> _selectedRewardsList = new List<RewardAttributes>();
 
+        [SerializeField] private RewardAttributes deathReward;
         private void OnEnable()
         {
             GameStateHandler.OnGameAwaitingStartState += InitializeRewards;
@@ -52,6 +52,7 @@ namespace Wheel.Control
             _uncommonRewardList.Clear();
             _rareRewardList.Clear();
             _rewardLists.Clear();
+            _selectedRewardsList.Clear();
             for (int i = 0; i < rewards.Length; i++)
             {
                 if (rewards[i].Rarity == RewardRarity.Common)
@@ -87,7 +88,8 @@ namespace Wheel.Control
         }
         private void AssignRewards()
         {
-            for(int k = 0; k < rewardImages.Length; k++)
+            _selectedRewardsList.Add(deathReward);
+            for(int k = 1; k < rewardImages.Length; k++)
             {
                 RewardAttributes chosenReward = null;
 
@@ -100,6 +102,7 @@ namespace Wheel.Control
                         if (_rewardLists[i][j].DropRate > randomRoll)
                         {
                             chosenReward = _rewardLists[i][j];
+                            _rewardLists[i].RemoveAt(j);
                             break;
                         }
                     }
@@ -107,7 +110,9 @@ namespace Wheel.Control
                 }
                 if (chosenReward == null)
                 {
-                    chosenReward = _commonRewardList[Random.Range(0, _commonRewardList.Count)];
+                    int randomIndex = Random.Range(0, _commonRewardList.Count);
+                    chosenReward = _commonRewardList[randomIndex];
+                    _commonRewardList.RemoveAt(randomIndex);
                 }
                 _selectedRewardsList.Add(chosenReward);
                 rewardImages[k].sprite = chosenReward.RewardSprite;
@@ -117,23 +122,10 @@ namespace Wheel.Control
         }
         public void ActivateCard(int rewardIndex)
         {
-            rewardCard.DisplayCard(SelectedBGSprite(_selectedRewardsList[rewardIndex].Rarity), _selectedRewardsList[rewardIndex].RewardSprite,
-                _selectedRewardsList[rewardIndex].RewardName, _selectedRewardsList[rewardIndex].RewardAmount.ToString());
+            rewardCard.DisplayCard(_selectedRewardsList[rewardIndex]);
+            GameStateHandler.ChangeState(GameState.SpinningFinished);
         }
 
-        private Sprite SelectedBGSprite(RewardRarity rarity)
-        {
-            switch (rarity)
-            {
-                case RewardRarity.Common:
-                    return commonBGSprite;
-                case RewardRarity.Uncommon:
-                    return uncommonBGSprite;
-                case RewardRarity.Rare:
-                    return rareBGSprite;
-                default:
-                    return commonBGSprite;
-            }
-        }
+
     }
 }

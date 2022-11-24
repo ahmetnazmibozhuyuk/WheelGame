@@ -4,10 +4,10 @@ using Wheel.Managers;
 
 namespace Wheel.UI
 {
-    public class SpinButton : MonoBehaviour
+    public class PayCurrencyButton : MonoBehaviour
     {
-        private Button _button;
 
+        private Button _button;
         private void OnValidate()
         {
             AssignButtonFunctionality();
@@ -18,12 +18,12 @@ namespace Wheel.UI
 
             _button = GetComponent<Button>();
             _button.onClick.RemoveAllListeners();
-            _button.onClick.AddListener(SpinWheel);
+            _button.onClick.AddListener(ContinueGame);
 
         }
-        private void SpinWheel()
+        private void ContinueGame()
         {
-            GameManager.Instance.SpinWheel();
+            GameStateHandler.ChangeState(GameState.GameAwaitingStart);
         }
     }
 }
