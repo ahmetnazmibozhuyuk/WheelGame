@@ -15,7 +15,7 @@ MonoBehaviour:
   RewardName: Gold
   RewardDescription: 
   RewardAmount: 10
-  RewardSprite: {fileID: 0}
+  RewardSprite: {fileID: 21300000, guid: 930105c37568fa544852adc0216816db, type: 3}
   Rarity: 2
   Type: 2
   DropRate: 5

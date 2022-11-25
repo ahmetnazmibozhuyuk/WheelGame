@@ -30,23 +30,24 @@ namespace Wheel.Managers
         {
             base.Awake();
             _wheelControl = wheelObject.GetComponent<WheelHandler>();
+            CurrentRound = 1;
         }
         private void Start()
         {
             GameStateHandler.ChangeState(GameState.GameAwaitingStart);
         }
-        private void OnEnable()
-        {
-            GameStateHandler.OnGameAwaitingStartState += NewRound;
-        }
-        private void OnDisable()
-        {
-            GameStateHandler.OnGameAwaitingStartState -= NewRound;
-        }
-        private void NewRound()
-        {
-            CurrentRound++;
-        }
+        //private void OnEnable()
+        //{
+        //    GameStateHandler.OnGameAwaitingStartState += NewRound;
+        //}
+        //private void OnDisable()
+        //{
+        //    GameStateHandler.OnGameAwaitingStartState -= NewRound;
+        //}
+        //private void NewRound()
+        //{
+        //    CurrentRound++;
+        //}
         public void NextRound()
         {
             upperStripe.MoveStripe();
@@ -54,7 +55,11 @@ namespace Wheel.Managers
             GameStateHandler.ChangeState(GameState.GameAwaitingStart);
             _wheelControl.RestartWheel();
         }
-
+        public void RestartRound()
+        {
+            GameStateHandler.ChangeState(GameState.GameAwaitingStart);
+            _wheelControl.RestartWheel();
+        }
 
         #region Wheel Control Methods
         public void SpinWheel()

@@ -23,7 +23,7 @@ namespace Wheel.UI
         }
         private void ContinueGame()
         {
-            GameStateHandler.ChangeState(GameState.GameAwaitingStart);
+            GameManager.Instance.RestartRound();
         }
     }
 }
