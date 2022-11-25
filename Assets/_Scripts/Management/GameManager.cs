@@ -1,6 +1,5 @@
 using UnityEngine;
 using Wheel.Control;
-using Wheel.Reward;
 using Wheel.UI;
 
 namespace Wheel.Managers
@@ -20,9 +19,6 @@ namespace Wheel.Managers
         #region Wheel Related
         [SerializeField] private GameObject wheelObject;
         private WheelHandler _wheelControl;
-
-        //[SerializeField] private Sprite[] wheelSprite;
-        //[SerializeField] private Sprite[] pinSprite;
         #endregion
 
         [SerializeField] private UpperStripeGenerator upperStripe;
@@ -36,18 +32,6 @@ namespace Wheel.Managers
         {
             GameStateHandler.ChangeState(GameState.GameAwaitingStart);
         }
-        //private void OnEnable()
-        //{
-        //    GameStateHandler.OnGameAwaitingStartState += NewRound;
-        //}
-        //private void OnDisable()
-        //{
-        //    GameStateHandler.OnGameAwaitingStartState -= NewRound;
-        //}
-        //private void NewRound()
-        //{
-        //    CurrentRound++;
-        //}
         public void NextRound()
         {
             upperStripe.MoveStripe();
@@ -67,10 +51,6 @@ namespace Wheel.Managers
             _wheelControl.StartSpinning();
             GameStateHandler.ChangeState(GameState.Spinning);
             
-        }
-        public void RestartWheel()
-        {
-            _wheelControl.RestartWheel();
         }
         #endregion
     }

@@ -22,7 +22,7 @@ namespace Wheel.UI
         }
         private void Restart()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         }
 
 

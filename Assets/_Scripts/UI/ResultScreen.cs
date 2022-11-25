@@ -48,7 +48,7 @@ namespace Wheel.UI
         }
         private void OnDisable()
         {
-            GameStateHandler.OnGameAwaitingStartState += InitializePanel;
+            GameStateHandler.OnGameAwaitingStartState -= InitializePanel;
             GameStateHandler.OnGameWonState -= Activate;
         }
         private void InitializePanel()

@@ -6,13 +6,10 @@ namespace Wheel.UI
 {
     public class WithdrawButton : MonoBehaviour
     {
-
-
         private Button _button;
         private void OnValidate()
         {
             AssignButtonFunctionality();
-
         }
         private void AssignButtonFunctionality()
         {
@@ -24,12 +21,8 @@ namespace Wheel.UI
         }
         private void ContinueGame()
         {
-            //GameManager.Instance.
             GameStateHandler.ChangeState(GameState.GameWon);
         }
-
-
-
         private void OnEnable()
         {
             GameStateHandler.OnSpinningState += DeactivateButton;
