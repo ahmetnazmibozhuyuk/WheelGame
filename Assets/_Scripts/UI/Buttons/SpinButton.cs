@@ -28,11 +28,13 @@ namespace Wheel.UI
         private void OnEnable()
         {
             GameStateHandler.OnSpinningState += DeactivateButton;
+            GameStateHandler.OnGameWonState += DeactivateButton;
             GameStateHandler.OnGameAwaitingStartState += ActivateButton;
         }
         private void OnDisable()
         {
             GameStateHandler.OnSpinningState -= DeactivateButton;
+            GameStateHandler.OnGameWonState -= DeactivateButton;
             GameStateHandler.OnGameAwaitingStartState -= ActivateButton;
         }
         private void DeactivateButton()

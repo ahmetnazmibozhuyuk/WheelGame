@@ -75,7 +75,12 @@ namespace Wheel.Control
                 {
                     if (_angleLimits[i].maximumAngle- _finalScore < _finalScore - _angleLimits[i].minimumAngle)
                     {
-                        transform.DORotate(new Vector3(0, 0, (_angleLimits[i].minimumAngle)), 0.5f).OnComplete(() => _rewardHandler.ActivateCard(i+1));
+                        transform.DORotate(new Vector3(0, 0, (_angleLimits[i].minimumAngle)), 0.5f).OnComplete(() => { 
+                            if(i==7)
+                                _rewardHandler.ActivateCard(0);
+                            else
+                                _rewardHandler.ActivateCard(i + 1);
+                        });
                         return;
                     }
                     else

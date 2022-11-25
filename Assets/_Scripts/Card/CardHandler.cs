@@ -3,11 +3,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using Wheel.Managers;
+using Wheel.UI;
 
 namespace Wheel.Reward
 {
     public class CardHandler : MonoBehaviour
     {
+        [SerializeField] private ResultScreen resultScreen;
+
         [SerializeField] private Image bgImage;
         [SerializeField] private Image rewardImage;
         [SerializeField] private TextMeshProUGUI nameText;
@@ -37,11 +40,6 @@ namespace Wheel.Reward
             transform.localScale = Vector3.zero;
 
         }
-        public void DismissCard()
-        {
-            transform.DOLocalMoveY(-1000f, 0.5f);
-            transform.DOScale(Vector3.zero, 0.5f).OnComplete(() => transform.position = _initialPosition);
-        }
 
         public void DisplayCard(RewardAttributes earnedReward)
         {
@@ -51,6 +49,7 @@ namespace Wheel.Reward
             amountText.SetText("x"+earnedReward.RewardAmount);
             rewardImage.SetNativeSize();
             transform.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBounce).OnComplete(()=> ReapReward(earnedReward));
+            resultScreen.SetGainedText(earnedReward);
         }
         private void ReapReward(RewardAttributes earnedReward)
         {

@@ -25,7 +25,7 @@ namespace Wheel.UI
         private void ContinueGame()
         {
             //GameManager.Instance.
-            GameStateHandler.ChangeState(GameState.GameAwaitingStart);
+            GameStateHandler.ChangeState(GameState.GameWon);
         }
 
 
@@ -33,11 +33,13 @@ namespace Wheel.UI
         private void OnEnable()
         {
             GameStateHandler.OnSpinningState += DeactivateButton;
+            GameStateHandler.OnGameWonState += DeactivateButton;
             GameStateHandler.OnSpinningFinishedState += ActivateButton;
         }
         private void OnDisable()
         {
             GameStateHandler.OnSpinningState -= DeactivateButton;
+            GameStateHandler.OnGameWonState -= DeactivateButton;
             GameStateHandler.OnSpinningFinishedState -= ActivateButton;
         }
         private void DeactivateButton()
