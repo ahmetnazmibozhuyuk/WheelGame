@@ -8,31 +8,14 @@ namespace Wheel.UI
 {
     public class ResultScreen : MonoBehaviour
     {
+
+        /*
+         Result screen displays anything we earned in the game. The knife upgrade or knife point values
+        can be used to level up a certain weapon or use for anything necessary for the game.
+         */
+
         private TextMeshProUGUI[] _resultText = new TextMeshProUGUI[22];
         private int[] _resultValue = new int[22];
-
-        //[SerializeField] private TextMeshProUGUI moneyText;
-        //[SerializeField] private TextMeshProUGUI goldText;
-        //[SerializeField] private TextMeshProUGUI commonChestText;
-        //[SerializeField] private TextMeshProUGUI uncommonChestText;
-        //[SerializeField] private TextMeshProUGUI rareChestText;
-        //[SerializeField] private TextMeshProUGUI grenadeText;
-        //[SerializeField] private TextMeshProUGUI knifeText;
-        //[SerializeField] private TextMeshProUGUI pistolText;
-        //[SerializeField] private TextMeshProUGUI rifleText;
-        //[SerializeField] private TextMeshProUGUI shotgunText;
-        //[SerializeField] private TextMeshProUGUI sniperText;
-        //[SerializeField] private TextMeshProUGUI helmetText;
-        //[SerializeField] private TextMeshProUGUI pumpkinText;
-        //[SerializeField] private TextMeshProUGUI glassesText;
-        //[SerializeField] private TextMeshProUGUI grenadePointText;
-        //[SerializeField] private TextMeshProUGUI knifePointText;
-        //[SerializeField] private TextMeshProUGUI pistolPointText;
-        //[SerializeField] private TextMeshProUGUI smgPointText;
-        //[SerializeField] private TextMeshProUGUI riflePointText;
-        //[SerializeField] private TextMeshProUGUI shotgunPointText;
-        //[SerializeField] private TextMeshProUGUI sniperPointText;
-        //[SerializeField] private TextMeshProUGUI armorPointText;
 
         private void Awake()
         {
