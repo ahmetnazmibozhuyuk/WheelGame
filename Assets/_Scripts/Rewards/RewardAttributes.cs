@@ -14,6 +14,8 @@ namespace Wheel.Reward
         public RewardRarity Rarity;
         public RewardType Type;
         [Range(0,20)]public float DropRate;
+
+        public string SpriteName;
     }
     public enum RewardType { Death,Money,Gold,CommonChest,UncommonChest,
         RareChest,Grenade,Knife,Pistol,Rifle,Shotgun,Sniper,Helmet,Pumpkin,Glasses,

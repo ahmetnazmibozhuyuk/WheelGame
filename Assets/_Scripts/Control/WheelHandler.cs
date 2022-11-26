@@ -5,10 +5,6 @@ using UnityEngine.UI;
 
 namespace Wheel.Control
 {
-
-
-    //dönerken her segmenti geçtiğinde ses çıkacak ve pin hareketi
-
     [RequireComponent(typeof(RewardHandler))]
     public class WheelHandler : MonoBehaviour
     {
@@ -25,14 +21,13 @@ namespace Wheel.Control
         {
             get
             {
-
-                return transform.rotation.eulerAngles.z % 360+_startAngle;
+                return transform.rotation.eulerAngles.z % 360+_offsetAngle;
             }
         }
 
         private AngleLimit[] _angleLimits;
         private readonly int _segmentCount = 8;
-        private readonly float _startAngle = 45;
+        private readonly float _offsetAngle = 45;
 
         private void Awake()
         {
@@ -55,17 +50,17 @@ namespace Wheel.Control
             _angleLimits = new AngleLimit[_segmentCount];
             for (int i = 0; i < _angleLimits.Length; i++)
             {
-                _angleLimits[i].minimumAngle = ((360 / _segmentCount) * i + _startAngle)  - 1;
-                _angleLimits[i].maximumAngle = ((360 / _segmentCount) * (i + 1) + _startAngle) + 1;
+                _angleLimits[i].minimumAngle = ((360 / _segmentCount) * i + _offsetAngle)  - 1;
+                _angleLimits[i].maximumAngle = ((360 / _segmentCount) * (i + 1) + _offsetAngle) + 1;
             }
         }
         public void StartSpinning()
         {
             DOTween.To(() => _currentTurnAngle, x => _currentTurnAngle = x, 2000 + Random.Range(0f, 360f), 6 + Random.Range(0f, 5f)).
                 SetEase(Ease.InOutCubic).
-                OnUpdate(() => transform.rotation = Quaternion.Euler(0, 0, _currentTurnAngle)).OnComplete(() => ResultIndex());
+                OnUpdate(() => transform.rotation = Quaternion.Euler(0, 0, _currentTurnAngle)).OnComplete(() => ResultPhase());
         }
-        private void ResultIndex()
+        private void ResultPhase()
         {
             GameStateHandler.ChangeState(GameState.SpinningFinished);
             for (int i = 0; i < _angleLimits.Length; i++)
@@ -85,7 +80,7 @@ namespace Wheel.Control
                     }
                     else
                     {
-                        transform.DORotate(new Vector3(0, 0, (_angleLimits[i].minimumAngle - _startAngle)), 0.5f).OnComplete(() => _rewardHandler.ActivateCard(i));
+                        transform.DORotate(new Vector3(0, 0, (_angleLimits[i].minimumAngle - _offsetAngle)), 0.5f).OnComplete(() => _rewardHandler.ActivateCard(i));
                         return;
                     }
                 }

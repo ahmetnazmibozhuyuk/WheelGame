@@ -190,6 +190,7 @@ namespace Wheel.Control
                 }
                 _selectedRewardsList.Add(chosenReward);
                 rewardImages[k].sprite = chosenReward.RewardSprite;
+                //rewardImages[k].sprite = SpriteManager.Instance.GetRewardSprite(chosenReward.SpriteName);
                 rewardImages[k].SetNativeSize();
             }
         }

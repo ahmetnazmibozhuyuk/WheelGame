@@ -16,7 +16,11 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 3133fecc2bc432e4c9811a8b2ee79bc2
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 47f9f8b472ab78a41a116cb7b77b0d3b
+    m_Address: Assets/Sprites/RewardIcons.spriteatlas
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4e60906a59b8bb14eb93dda6d0e8599a, type: 2}
   m_SchemaSet:
