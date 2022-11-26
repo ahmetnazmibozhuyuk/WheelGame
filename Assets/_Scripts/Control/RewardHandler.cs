@@ -38,6 +38,7 @@ namespace Wheel.Control
             GameStateHandler.OnGameAwaitingStartState += InitializeRewards;
 
         }
+
         private void OnDisable()
         {
             GameStateHandler.OnGameAwaitingStartState -= InitializeRewards;
@@ -100,7 +101,7 @@ namespace Wheel.Control
         {
 
             _selectedRewardsList.Add(deathReward);
-            rewardImages[0].sprite = deathReward.RewardSprite;
+            rewardImages[0].sprite = SpriteManager.Instance.GetRewardSprite(deathReward.SpriteName);
             rewardImages[0].SetNativeSize();
             for (int k = 1; k < rewardImages.Length; k++)
             {
@@ -128,7 +129,7 @@ namespace Wheel.Control
                     _commonRewardList.RemoveAt(randomIndex);
                 }
                 _selectedRewardsList.Add(chosenReward);
-                rewardImages[k].sprite = chosenReward.RewardSprite;
+                rewardImages[k].sprite = SpriteManager.Instance.GetRewardSprite(chosenReward.SpriteName);
                 rewardImages[k].SetNativeSize();
             }
         }
@@ -160,7 +161,7 @@ namespace Wheel.Control
                     _commonRewardList.RemoveAt(randomIndex);
                 }
                 _selectedRewardsList.Add(chosenReward);
-                rewardImages[k].sprite = chosenReward.RewardSprite;
+                rewardImages[k].sprite = SpriteManager.Instance.GetRewardSprite(chosenReward.SpriteName);
                 rewardImages[k].SetNativeSize();
             }
         }
@@ -189,8 +190,8 @@ namespace Wheel.Control
                     _rareRewardList.RemoveAt(randomIndex);
                 }
                 _selectedRewardsList.Add(chosenReward);
-                rewardImages[k].sprite = chosenReward.RewardSprite;
-                //rewardImages[k].sprite = SpriteManager.Instance.GetRewardSprite(chosenReward.SpriteName);
+                //rewardImages[k].sprite = chosenReward.RewardSprite;
+                rewardImages[k].sprite = SpriteManager.Instance.GetRewardSprite(chosenReward.SpriteName);
                 rewardImages[k].SetNativeSize();
             }
         }

@@ -28,9 +28,12 @@ namespace Wheel.Managers
             rewardSpriteLoadOperation = rewardSpriteAddressable.LoadAssetAsync<SpriteAtlas>();
 
             yield return rewardSpriteLoadOperation;
-            
+
+
+
             _rewardAtlas = rewardSpriteLoadOperation.Result;
-            Debug.Log("atlas sprite loading started");
+
+            GameManager.Instance.StartGame();
         }
 
         private void UnloadRewardSprite()

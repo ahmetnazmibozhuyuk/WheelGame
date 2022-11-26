@@ -28,8 +28,13 @@ namespace Wheel.Managers
             _wheelControl = wheelObject.GetComponent<WheelHandler>();
             CurrentRound = 1;
         }
-        private void Start()
+        public void StartGame()
         {
+            /*
+            Game should switch to awaiting start phase only when all async initial operations are complete.
+            If we had more loading operations we'd wait for all of them to finish but since this case only
+            has one async asset loading in the beginning we just need to start once it is finished loading.
+            */
             GameStateHandler.ChangeState(GameState.GameAwaitingStart);
         }
         public void NextRound()
