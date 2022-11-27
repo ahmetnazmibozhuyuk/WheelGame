@@ -50,10 +50,5 @@ namespace Wheel.Managers
             }
             return _rewardAtlas.GetSprite(spriteName);
         }
-        //private void Update()
-        //{
-        //    if (rewardSpriteLoadOperation.Status == AsyncOperationStatus.Succeeded)
-        //        Debug.Log(_rewardAtlas);
-        //}
     }
 }

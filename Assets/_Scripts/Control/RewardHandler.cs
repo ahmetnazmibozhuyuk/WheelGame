@@ -14,7 +14,7 @@ namespace Wheel.Control
 
         [SerializeField] private RewardAttributes[] rewards;
 
-        [SerializeField]private int minimumCommonItemRound = 0;
+        [SerializeField] private int minimumCommonItemRound = 0;
         [SerializeField] private int maximumCommonItemRound = 15;
 
         [SerializeField] private int minimumUncommonItemRound = 3;
@@ -36,9 +36,7 @@ namespace Wheel.Control
         private void OnEnable()
         {
             GameStateHandler.OnGameAwaitingStartState += InitializeRewards;
-
         }
-
         private void OnDisable()
         {
             GameStateHandler.OnGameAwaitingStartState -= InitializeRewards;
@@ -85,7 +83,7 @@ namespace Wheel.Control
         }
         private void AssignRewards()
         {
-            if(GameManager.Instance.CurrentRound%GameManager.Instance.SuperRoundIndex == 0)
+            if (GameManager.Instance.CurrentRound % GameManager.Instance.SuperRoundIndex == 0)
             {
                 GoldenRewards();
                 return;
@@ -99,15 +97,12 @@ namespace Wheel.Control
         }
         private void BronzeReward()
         {
-
             _selectedRewardsList.Add(deathReward);
             rewardImages[0].sprite = SpriteManager.Instance.GetRewardSprite(deathReward.SpriteName);
             rewardImages[0].SetNativeSize();
             for (int k = 1; k < rewardImages.Length; k++)
             {
                 RewardAttributes chosenReward = null;
-
-
                 for (int i = 0; i < _rewardLists.Count; i++)
                 {
                     for (int j = 0; j < _rewardLists[i].Count; j++)
@@ -135,7 +130,7 @@ namespace Wheel.Control
         }
         private void SilverRewards()
         {
-            for (int k =0; k < rewardImages.Length; k++)
+            for (int k = 0; k < rewardImages.Length; k++)
             {
                 RewardAttributes chosenReward = null;
 
@@ -171,18 +166,19 @@ namespace Wheel.Control
             {
                 RewardAttributes chosenReward = null;
 
-                    for (int j = 0; j < _rareRewardList.Count; j++)
+                for (int j = 0; j < _rareRewardList.Count; j++)
+                {
+                    float randomRoll = Random.Range(0f, 100f);
+                    if (_rareRewardList[j].DropRate > randomRoll)
                     {
-                        float randomRoll = Random.Range(0f, 100f);
-                        if (_rareRewardList[j].DropRate > randomRoll)
-                        {
-                            chosenReward = _rareRewardList[j];
+                        chosenReward = _rareRewardList[j];
                         _rareRewardList.RemoveAt(j);
-                            break;
-                        }
+                        break;
                     }
-                    if (chosenReward != null) break;
+
+                }
                 
+
                 if (chosenReward == null)
                 {
                     int randomIndex = Random.Range(0, _rareRewardList.Count);
@@ -190,7 +186,6 @@ namespace Wheel.Control
                     _rareRewardList.RemoveAt(randomIndex);
                 }
                 _selectedRewardsList.Add(chosenReward);
-                //rewardImages[k].sprite = chosenReward.RewardSprite;
                 rewardImages[k].sprite = SpriteManager.Instance.GetRewardSprite(chosenReward.SpriteName);
                 rewardImages[k].SetNativeSize();
             }
@@ -200,7 +195,5 @@ namespace Wheel.Control
             rewardCard.DisplayCard(_selectedRewardsList[rewardIndex]);
             GameStateHandler.ChangeState(GameState.SpinningFinished);
         }
-
-
     }
 }

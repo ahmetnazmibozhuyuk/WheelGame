@@ -11,7 +11,10 @@ namespace Wheel.UI
         private void OnValidate()
         {
             AssignButtonFunctionality();
-
+        }
+        private void Awake()
+        {
+            AssignButtonFunctionality();
         }
         private void AssignButtonFunctionality()
         {
