@@ -6,6 +6,7 @@ using Wheel.Managers;
 
 namespace Wheel.Control
 {
+    [RequireComponent(typeof(RewardTester))]
     public class RewardHandler : MonoBehaviour
     {
 
@@ -33,6 +34,13 @@ namespace Wheel.Control
         private List<RewardAttributes> _selectedRewardsList = new List<RewardAttributes>();
 
         [SerializeField] private RewardAttributes deathReward;
+
+        private RewardTester _rewardTester;
+
+        private void Awake()
+        {
+            _rewardTester = GetComponent<RewardTester>();
+        }
         private void OnEnable()
         {
             GameStateHandler.OnGameAwaitingStartState += InitializeRewards;
@@ -43,6 +51,11 @@ namespace Wheel.Control
         }
         private void InitializeRewards()
         {
+            if (_rewardTester.ShouldOverrideRewards)
+            {
+                UseRewardTester();
+                return;
+            }
             _commonRewardList.Clear();
             _uncommonRewardList.Clear();
             _rareRewardList.Clear();
@@ -188,6 +201,16 @@ namespace Wheel.Control
                 _selectedRewardsList.Add(chosenReward);
                 rewardImages[k].sprite = SpriteManager.Instance.GetRewardSprite(chosenReward.SpriteName);
                 rewardImages[k].SetNativeSize();
+            }
+        }
+        private void UseRewardTester()
+        {
+            _selectedRewardsList.Clear();
+            _selectedRewardsList = _rewardTester.Rewards;
+            for (int i = 0; i < _selectedRewardsList.Count; i++)
+            {
+                rewardImages[i].sprite = SpriteManager.Instance.GetRewardSprite(_selectedRewardsList[i].SpriteName);
+                rewardImages[i].SetNativeSize();
             }
         }
         public void ActivateCard(int rewardIndex)

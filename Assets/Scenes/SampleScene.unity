@@ -2873,6 +2873,7 @@ GameObject:
   - component: {fileID: 1144770396}
   - component: {fileID: 1144770399}
   - component: {fileID: 1144770400}
+  - component: {fileID: 1144770401}
   - component: {fileID: 1144770398}
   - component: {fileID: 1144770397}
   m_Layer: 5
@@ -3033,6 +3034,28 @@ MonoBehaviour:
   minimumRareItemRound: 15
   maximumRareItemRound: 150
   deathReward: {fileID: 11400000, guid: 06fc00a7182111f47a173e3b6c16bf3f, type: 2}
+--- !u!114 &1144770401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144770395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 858151ff6d7ce7c41ad133c99f52883f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShouldOverrideRewards: 0
+  Rewards:
+  - {fileID: 11400000, guid: 1235b261d55749749a0899cce68e5708, type: 2}
+  - {fileID: 11400000, guid: 58fb87b0a0cce774d99ea854786898e5, type: 2}
+  - {fileID: 11400000, guid: 86f7bece687dc1348b43fb16bde1925d, type: 2}
+  - {fileID: 11400000, guid: b927a3cbf760559489dd57f888a6a591, type: 2}
+  - {fileID: 11400000, guid: d22333b0794ea97448a7e515b695244c, type: 2}
+  - {fileID: 11400000, guid: 80b57dca86296c943aada0ff6a9fc5d9, type: 2}
+  - {fileID: 11400000, guid: b84818cd16e3c71428cbf1f55aa9f522, type: 2}
+  - {fileID: 11400000, guid: 29a8aef9943e7214792970dd4dfbe630, type: 2}
 --- !u!1001 &1190269300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4818,7 +4841,7 @@ GameObject:
   - component: {fileID: 1644295877}
   - component: {fileID: 1644295876}
   m_Layer: 5
-  m_Name: ui_leftSideFade
+  m_Name: ui_rightSideFade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
