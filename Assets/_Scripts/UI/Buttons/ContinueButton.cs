@@ -35,6 +35,7 @@ namespace Wheel.UI
         {
             GameStateHandler.OnSpinningState += DeactivateButton;
             GameStateHandler.OnGameWonState += DeactivateButton;
+            GameStateHandler.OnGameLostState += DeactivateButton;
             GameStateHandler.OnGameAwaitingStartState += DeactivateButton;
             GameStateHandler.OnSpinningFinishedState+= ActivateButton;
         }
@@ -42,6 +43,7 @@ namespace Wheel.UI
         {
             GameStateHandler.OnSpinningState -= DeactivateButton;
             GameStateHandler.OnGameWonState -= DeactivateButton;
+            GameStateHandler.OnGameLostState -= DeactivateButton;
             GameStateHandler.OnGameAwaitingStartState -= DeactivateButton;
             GameStateHandler.OnSpinningFinishedState -= ActivateButton;
         }

@@ -57,6 +57,10 @@ namespace Wheel.Reward
             {
                 GameStateHandler.ChangeState(GameState.GameLost);
             }
+            else
+            {
+                GameStateHandler.ChangeState(GameState.SpinningFinished);
+            }
         }
         private Sprite SelectedBGSprite(RewardRarity rarity)
         {

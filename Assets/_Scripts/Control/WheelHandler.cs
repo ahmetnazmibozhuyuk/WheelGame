@@ -61,7 +61,6 @@ namespace Wheel.Control
         }
         private void ResultPhase()
         {
-            GameStateHandler.ChangeState(GameState.SpinningFinished);
             for (int i = 0; i < _angleLimits.Length; i++)
             {
 

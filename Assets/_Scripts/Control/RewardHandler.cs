@@ -222,7 +222,6 @@ namespace Wheel.Control
         public void ActivateCard(int rewardIndex)
         {
             rewardCard.DisplayCard(_selectedRewardsList[rewardIndex]);
-            GameStateHandler.ChangeState(GameState.SpinningFinished);
         }
     }
 }
