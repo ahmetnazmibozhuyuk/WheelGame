@@ -8,11 +8,15 @@ namespace Wheel.Managers
 {
     public class SpriteManager : Singleton<SpriteManager>
     {
+        /*
+         I decided to use an addressable sprite atlas to display the images on the wheel. The game waits
+        for the async sprite loading phase before switching to game ready phase.
+         */
+
         [SerializeField] private AssetReferenceAtlasedSprite rewardSpriteAddressable;
 
         private SpriteAtlas _rewardAtlas;
         private AsyncOperationHandle<SpriteAtlas> rewardSpriteLoadOperation;
-
 
         protected override void Awake()
         {
@@ -26,16 +30,10 @@ namespace Wheel.Managers
         private IEnumerator LoadRewardSprite()
         {
             rewardSpriteLoadOperation = rewardSpriteAddressable.LoadAssetAsync<SpriteAtlas>();
-
             yield return rewardSpriteLoadOperation;
-
-
-
             _rewardAtlas = rewardSpriteLoadOperation.Result;
-
             GameManager.Instance.StartGame();
         }
-
         private void UnloadRewardSprite()
         {
             _rewardAtlas = null;

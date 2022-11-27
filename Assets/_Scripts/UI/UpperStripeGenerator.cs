@@ -8,8 +8,9 @@ namespace Wheel.UI
 {
     public class UpperStripeGenerator : MonoBehaviour
     {
-        [SerializeField] private bool validate;
-
+        /*
+         The upper stripe that shows the current round expands as the rounds increase.
+         */
         private List<RectTransform> _rectTransformList = new List<RectTransform>();
         [SerializeField] private GameObject regularStripeElement;
         [SerializeField] private GameObject safeStripeElement;

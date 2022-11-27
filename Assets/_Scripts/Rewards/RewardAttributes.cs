@@ -5,9 +5,14 @@ namespace Wheel.Reward
     [CreateAssetMenu(fileName = "New Reward", menuName = "Scriptable Objects/New Reward", order = 1)]
     public class RewardAttributes : ScriptableObject
     {
+        /*
+         Scriptable Object rewards can be found in "Rewards - Scriptable" folder in Assets folder. The scriptable
+        objects can be easily expanded, changed or created from editor without touching any code.
+         */
+
         public string RewardName;
         public string RewardDescription;
-        public int RewardAmount; // bu bi multiplier'a bağlı olacak giderek artacak
+        public int RewardAmount;
 
         public Sprite RewardSprite;
 

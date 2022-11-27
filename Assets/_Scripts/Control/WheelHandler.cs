@@ -24,7 +24,6 @@ namespace Wheel.Control
                 return transform.rotation.eulerAngles.z % 360+_offsetAngle;
             }
         }
-
         private AngleLimit[] _angleLimits;
         private readonly int _segmentCount = 8;
         private readonly float _offsetAngle = 45;
@@ -71,7 +70,7 @@ namespace Wheel.Control
                     if (_angleLimits[i].maximumAngle- _finalScore < _finalScore - _angleLimits[i].minimumAngle)
                     {
                         transform.DORotate(new Vector3(0, 0, (_angleLimits[i].minimumAngle)), 0.5f).OnComplete(() => { 
-                            if(i==7)
+                            if(i==_segmentCount-1)
                                 _rewardHandler.ActivateCard(0);
                             else
                                 _rewardHandler.ActivateCard(i + 1);

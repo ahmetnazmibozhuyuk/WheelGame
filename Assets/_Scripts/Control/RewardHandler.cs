@@ -37,6 +37,12 @@ namespace Wheel.Control
 
         private RewardTester _rewardTester;
 
+
+        /*
+         Reward tester class can override random items and can be used to test any rewards that is placed in the Rewards list.
+         */
+
+
         private void Awake()
         {
             _rewardTester = GetComponent<RewardTester>();

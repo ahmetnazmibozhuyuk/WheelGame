@@ -34,6 +34,8 @@ namespace Wheel.Managers
             Game should switch to awaiting start phase only when all async initial operations are complete.
             If we had more loading operations we'd wait for all of them to finish but since this case only
             has one async asset loading in the beginning we just need to start once it is finished loading.
+
+            In this phase, a loading screen can be applied while the game is loading.
             */
             GameStateHandler.ChangeState(GameState.GameAwaitingStart);
         }
